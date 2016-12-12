@@ -1,4 +1,4 @@
-import model.Data;
+import model.ProvinceData;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,17 +12,17 @@ public class CsvReader {
     private static final String SEPARATOR = ";";
     private static final String FILE_NAME = "data.csv";
 
-    public static List<Data> readRecords() throws IOException {
+    public static List<ProvinceData> readRecords() throws IOException {
         File file = new File(FILE_NAME);
         FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
+        InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file), "windows-1250");
+        BufferedReader br = new BufferedReader(inputStreamReader);
         String line;
         while ((line = br.readLine()) != null) {
             parseLine(line);
         }
         br.close();
         fr.close();
-
 
         return new ArrayList<>();
     }
@@ -31,10 +31,10 @@ public class CsvReader {
         String[] values = line.split(SEPARATOR);
         switch (values.length) {
             case 0:
-                System.out.println("");
+                System.out.println("-------------------------------------------------");
                 break;
             case 2:
-                System.out.println("2");
+                System.out.println(values[0] + " " + values[1]);
                 break;
             case 5:
                 System.out.println(values[0]);

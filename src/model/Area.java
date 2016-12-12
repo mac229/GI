@@ -7,5 +7,5 @@ public class Area {
 
     private int id;
     private String name;
-    private Data[] data = new Data[16];
+    private ProvinceData[] provinceData = new ProvinceData[16];
 }
