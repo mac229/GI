@@ -1,3 +1,4 @@
+import model.Area;
 import model.ProvinceData;
 
 import java.io.*;
@@ -12,19 +13,28 @@ public class CsvReader {
     private static final String SEPARATOR = ";";
     private static final String FILE_NAME = "data.csv";
 
-    public static List<ProvinceData> readRecords() throws IOException {
+    public static List<Area> readRecords() throws IOException {
         File file = new File(FILE_NAME);
         FileReader fr = new FileReader(file);
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file), "windows-1250");
         BufferedReader br = new BufferedReader(inputStreamReader);
-        String line;
-        while ((line = br.readLine()) != null) {
-            parseLine(line);
-        }
+        List<Area> data = getData(br);
         br.close();
         fr.close();
 
-        return new ArrayList<>();
+        return data;
+    }
+
+    private static List<Area> getData(BufferedReader br) throws IOException {
+        List<Area> result = new ArrayList<>();
+
+        String line;
+        Area area;
+        while ((line = br.readLine()) != null) {
+            parseLine(line);
+        }
+
+        return result;
     }
 
     private static void parseLine(String line) {
@@ -34,14 +44,19 @@ public class CsvReader {
                 System.out.println("-------------------------------------------------");
                 break;
             case 2:
-                System.out.println(values[0] + " " + values[1]);
+                System.out.println(values[0] + "\t\t" + values[1]);
                 break;
             case 5:
-                System.out.println(values[0]);
+                System.out.println(getSubstring(values[0]) + "\t\t" + values[1] + "\t\t" + values[2] + "\t\t" + values[3] + "\t\t" + values[4]);
                 break;
-            default:
-                //throw new RuntimeException("too big");
         }
-        //System.out.println(values.length);
+    }
+
+    private static String getSubstring(String value) {
+        for (int i = value.length(); i < 16; i++) {
+            value += " ";
+        }
+
+        return value;
     }
 }
