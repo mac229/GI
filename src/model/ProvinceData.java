@@ -13,10 +13,20 @@ public class ProvinceData {
 
     public ProvinceData(String province, String value2005, String value2010, String value2013, String value2014) {
         this.province = province;
-        this.value2005 = Double.parseDouble(value2005);
-        this.value2010 = Double.parseDouble(value2010);
-        this.value2013 = Double.parseDouble(value2013);
-        this.value2014 = Double.parseDouble(value2014);
+        try {
+            if (!value2005.isEmpty()) {
+                this.value2005 = Double.parseDouble(value2005);
+            }
+            if (!value2010.isEmpty()) {
+                this.value2010 = Double.parseDouble(value2010);
+            }
+            if (!value2013.isEmpty()) {
+                this.value2013 = Double.parseDouble(value2013);
+            }
+            this.value2014 = Double.parseDouble(value2014);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public String getProvince() {

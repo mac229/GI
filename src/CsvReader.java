@@ -29,16 +29,35 @@ public class CsvReader {
         List<Area> result = new ArrayList<>();
 
         String line;
-        Area area;
+        Area area = null;
         while ((line = br.readLine()) != null) {
-            parseLine(line);
+            String[] values = line.split(SEPARATOR);
+            printLine(values);
+            switch (values.length) {
+                case 0:
+                    result.add(area);
+                    break;
+                case 2:
+                    area = parseArea(values);
+                    break;
+                case 5:
+                    ProvinceData province = parseProvince(values);
+                    area.addProvinceData(province);
+                    break;
+            }
         }
-
         return result;
     }
 
-    private static void parseLine(String line) {
-        String[] values = line.split(SEPARATOR);
+    private static ProvinceData parseProvince(String[] values) {
+        return new ProvinceData(values[0], values[1], values[2], values[3], values[4]);
+    }
+
+    private static Area parseArea(String[] values) {
+        return new Area(values[0], values[1]);
+    }
+
+    private static void printLine(String[] values) {
         switch (values.length) {
             case 0:
                 System.out.println("-------------------------------------------------");
