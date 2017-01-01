@@ -1,14 +1,20 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.SelectionMode;
+import main.CsvReader;
+import model.Area;
+import model.ProvinceData;
 
-public class Controller {
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable {
 
     @FXML
     private StackedBarChart stackedBarChart;
@@ -17,14 +23,14 @@ public class Controller {
     @FXML
     private ListView<String> areasListView;
 
-    @FXML
-    public void initialize() {
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Devices");
-        xAxis.getCategories().addAll("Desktop", "Phone", "Tablet");
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Visits");
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        List<Area> areas = CsvReader.readData();
+
+        setSelectionMode();
+        setProvinceListView(areas);
+        setAreasListView(areas);
 
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("Desktop");
@@ -49,5 +55,23 @@ public class Controller {
         dataSeries3.getData().add(new XYChart.Data("2015", 36));
 
         stackedBarChart.getData().add(dataSeries3);
+    }
+
+    private void setProvinceListView(List<Area> areas) {
+        List<ProvinceData> provinceDataList = areas.get(0).getProvinceData();
+        for (int i = 1; i < provinceDataList.size(); i++) {
+            provincesListView.getItems().add(provinceDataList.get(i).getProvince());
+        }
+    }
+
+    private void setAreasListView(List<Area> areas) {
+        for (Area area : areas) {
+            areasListView.getItems().add(area.getName());
+        }
+    }
+
+    private void setSelectionMode() {
+        provincesListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        areasListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 }
