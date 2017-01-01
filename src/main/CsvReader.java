@@ -1,3 +1,5 @@
+package main;
+
 import model.Area;
 import model.ProvinceData;
 
@@ -13,7 +15,17 @@ public class CsvReader {
     private static final String SEPARATOR = ";";
     private static final String FILE_NAME = "data.csv";
 
-    public static List<Area> readRecords() throws IOException {
+    public static List<Area> readData() {
+        try {
+            return readRecords();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        throw new RuntimeException("Fatal error");
+    }
+
+    private static List<Area> readRecords() throws IOException {
         File file = new File(FILE_NAME);
         FileReader fr = new FileReader(file);
         InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file), "windows-1250");
