@@ -1,7 +1,7 @@
 package main;
 
 import model.Area;
-import model.ProvinceData;
+import model.Province;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class CsvReader {
                     break;
                 case 5:
                     if (!values[0].equals("Rok")) {
-                        ProvinceData province = parseProvince(values);
+                        Province province = parseProvince(values);
                         area.addProvinceData(province);
                     }
                     break;
@@ -63,8 +63,8 @@ public class CsvReader {
         return result;
     }
 
-    private static ProvinceData parseProvince(String[] values) {
-        return new ProvinceData(values[0], values[1], values[2], values[3], values[4]);
+    private static Province parseProvince(String[] values) {
+        return new Province(values[0], values[1], values[2], values[3], values[4]);
     }
 
     private static Area parseArea(String[] values) {

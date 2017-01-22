@@ -10,7 +10,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import main.CsvReader;
 import model.Area;
-import model.ProvinceData;
+import model.Province;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class Controller implements Initializable {
             String areaName = series.getName();
             for (Area area : areas) {
                 if (areaName.equals(area.getName())) {
-                    for (ProvinceData province : area.getProvinceData()) {
+                    for (Province province : area.getProvince()) {
                         if (selectedProvinces.contains(province.getProvince())) {
                             series.getData().add(new XYChart.Data(province.getProvince(), province.getValue2014()));
                         }
@@ -81,9 +81,9 @@ public class Controller implements Initializable {
     }
 
     private void setProvinceListView() {
-        List<ProvinceData> provinceDataList = areas.get(0).getProvinceData();
-        for (int i = 1; i < provinceDataList.size(); i++) {
-            provincesListView.getItems().add(provinceDataList.get(i).getProvince());
+        List<Province> provinceList = areas.get(0).getProvince();
+        for (int i = 1; i < provinceList.size(); i++) {
+            provincesListView.getItems().add(provinceList.get(i).getProvince());
         }
     }
 

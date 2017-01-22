@@ -10,7 +10,7 @@ public class Area {
 
     private int id;
     private String name;
-    private List<ProvinceData> provinceData = new ArrayList<>();
+    private List<Province> province = new ArrayList<>();
 
     public Area(String id, String name) {
         this.id = Integer.parseInt(id);
@@ -25,11 +25,11 @@ public class Area {
         return name;
     }
 
-    public List<ProvinceData> getProvinceData() {
-        return provinceData;
+    public List<Province> getProvince() {
+        return province;
     }
 
-    public void addProvinceData(ProvinceData provinceData) {
-        this.provinceData.add(provinceData);
+    public void addProvinceData(Province province) {
+        this.province.add(province);
     }
 }

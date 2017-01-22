@@ -3,7 +3,7 @@ package model;
 /**
  * Created by Maciej on 2016-12-11.
  */
-public class ProvinceData {
+public class Province {
 
     private String province;
     private double value2005;
@@ -11,7 +11,7 @@ public class ProvinceData {
     private double value2013;
     private double value2014;
 
-    public ProvinceData(String province, String value2005, String value2010, String value2013, String value2014) {
+    public Province(String province, String value2005, String value2010, String value2013, String value2014) {
         this.province = province;
         try {
             if (!value2005.isEmpty()) {
