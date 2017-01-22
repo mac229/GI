@@ -32,6 +32,10 @@ public class Controller implements Initializable {
         setProvinceListView(areas);
         setAreasListView(areas);
 
+        setCharts(areas);
+    }
+
+    private void setCharts(List<Area> areas) {
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("Desktop");
 

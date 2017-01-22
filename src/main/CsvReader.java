@@ -53,8 +53,10 @@ public class CsvReader {
                     area = parseArea(values);
                     break;
                 case 5:
-                    ProvinceData province = parseProvince(values);
-                    area.addProvinceData(province);
+                    if (!values[0].equals("Rok")) {
+                        ProvinceData province = parseProvince(values);
+                        area.addProvinceData(province);
+                    }
                     break;
             }
         }
@@ -78,7 +80,9 @@ public class CsvReader {
                 System.out.println(values[0] + "\t\t" + values[1]);
                 break;
             case 5:
-                System.out.println(getSubstring(values[0]) + "\t\t" + values[1] + "\t\t" + values[2] + "\t\t" + values[3] + "\t\t" + values[4]);
+                if (!values[0].equals("Rok")) {
+                    System.out.println(getSubstring(values[0]) + "\t\t" + values[1] + "\t\t" + values[2] + "\t\t" + values[3] + "\t\t" + values[4]);
+                }
                 break;
         }
     }

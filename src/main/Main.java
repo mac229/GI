@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     public static final int WIDTH = 1100;
-    public static final int HEIGHT = 750;
+    public static final int HEIGHT = 600;
 
     public static void main(String[] args) throws IOException {
         Application.launch(args);
