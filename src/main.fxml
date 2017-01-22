@@ -11,8 +11,8 @@
    <children>
       <VBox prefHeight="728.0" prefWidth="300.0">
          <children>
-            <ListView fx:id="provincesListView" prefHeight="375.0" prefWidth="296.0" />
-            <ListView fx:id="areasListView" prefHeight="375.0" prefWidth="296.0" />
+            <ListView fx:id="provincesListView" onMouseClicked="#onProvinceClick" prefHeight="375.0" prefWidth="296.0" />
+            <ListView fx:id="areasListView" onMouseClicked="#onAreaClick" prefHeight="375.0" prefWidth="296.0" />
          </children>
       </VBox>
       <StackedBarChart fx:id="stackedBarChart" prefHeight="750.0" prefWidth="808.0">
